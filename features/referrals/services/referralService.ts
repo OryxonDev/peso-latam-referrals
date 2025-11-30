@@ -1,8 +1,9 @@
 import { apiClient } from '@/lib/api/client';
 import type { Referral, CreateReferralInput, ReferralsResponse } from '@/features/referrals/types/referral.types';
+import { REFERRALS_BY_PAGE } from '@/features/referrals/consts/referralConsts';
 
 export const referralService = {
-  async getReferrals(page: number = 1, limit: number = 9): Promise<ReferralsResponse> {
+  async getReferrals(page: number = 1, limit: number = REFERRALS_BY_PAGE): Promise<ReferralsResponse> {
     const allReferrals = await apiClient<Referral[]>('/referrals?sortBy=id&order=desc');
     const sortedReferrals = allReferrals.sort((a, b) => {
       return Number(b.id) - Number(a.id);

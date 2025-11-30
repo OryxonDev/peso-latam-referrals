@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { formatCurrency } from '@/lib/utils/formatCurrency';
+import { PRICE_PER_REFERRAL } from '@/features/referrals/consts/referralConsts';
 
 export function ReferralListEmpty() {
   return (
@@ -24,7 +25,7 @@ export function ReferralListEmpty() {
           No hay referidos disponibles
         </h3>
         <p className="text-gray-600 mb-6">
-          Comienza a invitar personas y gana <span className="font-bold text-[#082422]">{formatCurrency(50)}</span> por cada referido confirmado
+          Comienza a invitar personas y gana <span className="font-bold text-[#082422]">{formatCurrency(PRICE_PER_REFERRAL)}</span> por cada referido confirmado
         </p>
         <Link
           href="/add-referral"

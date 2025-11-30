@@ -6,6 +6,7 @@ import { ReferralListLoading } from '@/features/referrals/components/ReferralLis
 import { ReferralListError } from '@/features/referrals/components/ReferralList/ReferralListError';
 import { ReferralListEmpty } from '@/features/referrals/components/ReferralList/ReferralListEmpty';
 import { useReferralStore } from '@/features/referrals/store/referralStore';
+import { REFERRALS_BY_PAGE } from '@/features/referrals/consts/referralConsts';
 
 export function ReferralList() {
   const { referrals } = useReferrals();
@@ -23,7 +24,7 @@ export function ReferralList() {
     return <ReferralListEmpty />;
   }
 
-  const totalPages = Math.ceil(referrals.data.total / 9);
+  const totalPages = Math.ceil(referrals.data.total / REFERRALS_BY_PAGE);
   const hasNextPage = currentPage < totalPages;
   const hasPrevPage = currentPage > 1;
 

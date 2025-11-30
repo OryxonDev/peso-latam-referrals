@@ -1,14 +1,14 @@
 import { useQuery } from '@tanstack/react-query';
 import { referralService } from '@/features/referrals/services/referralService';
 import { useReferralStore } from '@/features/referrals/store/referralStore';
+import { REFERRALS_BY_PAGE } from '@/features/referrals/consts/referralConsts';
 
 export function useReferrals() {
   const { currentPage } = useReferralStore();
-  const STALE_TIME = 1000 * 60 * 5;
 
   const referrals = useQuery({
     queryKey: ['referrals', currentPage],
-    queryFn: () => referralService.getReferrals(currentPage, 9),
+    queryFn: () => referralService.getReferrals(currentPage, REFERRALS_BY_PAGE),
   });
 
   const allReferrals = useQuery({

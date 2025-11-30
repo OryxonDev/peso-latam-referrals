@@ -5,12 +5,13 @@ import { useReferrals } from '@/features/referrals/hooks/useReferrals';
 import { formatCurrency } from '@/lib/utils/formatCurrency';
 import { TotalEarnedBannerError } from '@/features/referrals/components/TotalEarnedBanner/TotalEarnedBannerError';
 import { TotalEarnedBannerLoading } from '@/features/referrals/components/TotalEarnedBanner/TotalEarnedBannerLoading';
+import { PRICE_PER_REFERRAL } from '@/features/referrals/consts/referralConsts';
 
 export function TotalEarnedBanner() {
   const { allReferrals } = useReferrals();
   const totalConfirmed = allReferrals.data?.list?.filter((referral) => referral.state).length ?? 0;
   const totalPending = allReferrals.data?.list?.filter((referral) => !referral.state).length ?? 0;
-  const totalEarned = totalConfirmed * 50;
+  const totalEarned = totalConfirmed * PRICE_PER_REFERRAL;
 
   if (allReferrals.isLoading) {
     return <TotalEarnedBannerLoading />;
@@ -48,7 +49,7 @@ export function TotalEarnedBanner() {
             </p>
           </div>
           <div className="text-right space-y-4 w-1/1 md:w-2/3 lg:w-1/3">
-            <div className="ml-auto">Puedes invitar a más personas para ganar más dinero. Por cada referido confirmado, ganas <span className="font-semibold text-[#082422]">{formatCurrency(50)}</span>.</div>
+            <div className="ml-auto">Puedes invitar a más personas para ganar más dinero. Por cada referido confirmado, ganas <span className="font-semibold text-[#082422]">{formatCurrency(PRICE_PER_REFERRAL)}</span>.</div>
             <Link
               href="/add-referral"
               className="inline-block px-6 py-2 bg-[#082422] text-white rounded-lg font-medium hover:bg-[#082422]/90 transition-colors"

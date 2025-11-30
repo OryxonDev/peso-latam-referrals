@@ -6,6 +6,7 @@ import { formatCurrency } from '@/lib/utils/formatCurrency';
 import { useReferrals } from '@/features/referrals/hooks/useReferrals';
 import { ReferralProfileLoading } from '@/features/referrals/components/ReferralProfile/ReferralProfileLoading';
 import { ReferralProfileError } from '@/features/referrals/components/ReferralProfile/ReferralProfileError';
+import { PRICE_PER_REFERRAL } from '@/features/referrals/consts/referralConsts';
 
 interface ReferralProfileProps {
   id: string;
@@ -64,7 +65,7 @@ export function ReferralProfile({ id }: ReferralProfileProps) {
                     : 'bg-gray-100 text-gray-600'
                 }`}
               >
-                {referral.state ? `Confirmado + ${formatCurrency(50)}` : 'Invitado'}
+                {referral.state ? `Confirmado + ${formatCurrency(PRICE_PER_REFERRAL)}` : 'Invitado'}
               </span>
             </div>
           </div>

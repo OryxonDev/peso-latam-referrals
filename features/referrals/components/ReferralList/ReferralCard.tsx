@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import type { Referral } from '@/features/referrals/types/referral.types';
 import { formatCurrency } from '@/lib/utils/formatCurrency';
+import { PRICE_PER_REFERRAL } from '@/features/referrals/consts/referralConsts';
 
 interface ReferralCardProps {
   referral: Referral;
@@ -31,7 +32,7 @@ export function ReferralCard({ referral }: ReferralCardProps) {
           <h3 className="text-lg font-semibold text-[#082422] truncate">
             {referral.name}
           </h3>
-          <p className="font-bold mb-1">{referral.user}</p>©
+          <p className="font-bold mb-1">{referral.user}</p>
           <p className="mb-1">{referral.email}</p>
           <p className="mb-4">{referral.phone}</p>
           <div className="flex justify-end">
@@ -42,7 +43,7 @@ export function ReferralCard({ referral }: ReferralCardProps) {
                   : 'bg-gray-100 text-gray-600'
               }`}
             >
-              {referral.state ? `Confirmado + ${formatCurrency(50)}` : 'Invitado'}
+              {referral.state ? `Confirmado + ${formatCurrency(PRICE_PER_REFERRAL)}` : 'Invitado'}
             </span>
           </div>
         </div>

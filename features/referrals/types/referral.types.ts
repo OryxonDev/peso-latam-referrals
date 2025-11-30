@@ -20,4 +20,3 @@ export interface ReferralsResponse {
   list: Referral[];
   total: number;
 }
-

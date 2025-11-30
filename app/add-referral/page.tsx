@@ -1,5 +1,6 @@
 import { ReferralForm } from '@/features/referrals/components/ReferralInvite/ReferralForm';
 import { ReferralLinkCard } from '@/features/referrals/components/ReferralInvite/ReferralLinkCard';
+import { PRICE_PER_REFERRAL } from '@/features/referrals/consts/referralConsts';
 import { formatCurrency } from '@/lib/utils/formatCurrency';
 
 export default function AddReferralPage() {
@@ -10,7 +11,7 @@ export default function AddReferralPage() {
           Invita y gana
         </h1>
         <p className="text-gray-600">
-          Completa el formulario para enviar tu invitación a un amigo y gana <span className="font-bold">{formatCurrency(50)}</span>.
+          Completa el formulario para enviar tu invitación a un amigo y gana <span className="font-bold">{formatCurrency(PRICE_PER_REFERRAL)}</span>.
         </p>
       </div>
       <div className="bg-white rounded-lg shadow-md p-8">
