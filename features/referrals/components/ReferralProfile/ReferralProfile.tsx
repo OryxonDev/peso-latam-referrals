@@ -14,14 +14,14 @@ interface ReferralProfileProps {
 
 export function ReferralProfile({ id }: ReferralProfileProps) {
   const { referralById } = useReferrals();
-  const { data: referral, isLoading, isError, error } = referralById(id);
+  const { data: referral, isLoading, isError, error, refetch } = referralById(id);
 
   if (isLoading) {
     return <ReferralProfileLoading />;
   }
 
   if (isError) {
-    return <ReferralProfileError error={error} />;
+    return <ReferralProfileError error={error} refetch={refetch} />;
   }
 
   if (!referral) {

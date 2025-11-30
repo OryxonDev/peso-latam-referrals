@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useLayoutStore } from '@/features/layout/store/layoutStore';
 import { Logo } from '@/features/layout/components/Logo';
+import { ErrorSimulationPanel } from '@/lib/components/ErrorSimulationPanel';
 
 export function Sidebar() {
   const pathname = usePathname();
@@ -23,11 +24,11 @@ export function Sidebar() {
         />
       )}
       <aside
-        className={`fixed left-0 top-0 h-full bg-[#082422] text-white z-50 w-64 transform transition-transform duration-300 ease-in-out md:translate-x-0 ${
+        className={`fixed left-0 top-0 h-full bg-[#082422] text-white z-50 w-64 transform transition-transform duration-300 ease-in-out md:translate-x-0 flex flex-col ${
           isSidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
         }`}
       >
-        <div className="p-6">
+        <div className="p-6 flex-1">
           <div className="mt-4 mb-6 pb-6 border-b border-white/10 pb-4">
             <Logo className="text-white" />
           </div>
@@ -50,6 +51,9 @@ export function Sidebar() {
               );
             })}
           </nav>
+        </div>
+        <div className="p-4 border-t border-white/10">
+          <ErrorSimulationPanel />
         </div>
       </aside>
     </>

@@ -1,20 +1,46 @@
+'use client';
+
+import { useErrorSimulationStore } from '@/lib/store/errorSimulationStore';
+import { getErrorInfo } from '@/lib/utils/errorMessages';
+
 interface TotalEarnedBannerErrorProps {
   error: unknown;
+  refetch?: () => void;
 }
 
-export function TotalEarnedBannerError({ error }: TotalEarnedBannerErrorProps) {
-  const errorMessage =
-    error instanceof Error ? error.message : 'An unknown error occurred';
-  const errorName =
-    error instanceof Error ? error.name : 'UnknownError';
+export function TotalEarnedBannerError({ error, refetch }: TotalEarnedBannerErrorProps) {
+  const { reset } = useErrorSimulationStore();
+  const errorInfo = getErrorInfo(error, 'total ganado');
+
+  const handleRetry = () => {
+    reset();
+    if (refetch) {
+      refetch();
+    }
+  };
 
   return (
     <div className="mb-8 bg-red-50 border border-red-200 rounded-lg p-6">
-      <h3 className="text-lg font-semibold text-red-800 mb-2">
-        Error al cargar los referidos
+      <h3 className="text-lg font-semibold text-red-800 mb-3">
+        Error al cargar el total ganado
       </h3>
-      <p className="text-sm text-red-600">{errorMessage}</p>
-      <p className="text-sm text-red-600">{errorName}</p>
+      <p className="text-md text-red-700 mb-2 font-semibold">
+        {errorInfo.errorType}
+      </p>
+      <p className="text-sm text-red-700 mb-2">
+        <span className="font-medium">Qué falló:</span> {errorInfo.whatFailed}
+      </p>
+      <p className="text-sm text-red-700 mb-4">
+        <span className="font-medium">Cómo recuperarse:</span> {errorInfo.howToRecover}
+      </p>
+      {refetch && (
+        <button
+          onClick={handleRetry}
+          className="px-4 py-2 bg-[#082422] text-white rounded-lg hover:bg-[#082422]/80 transition-colors font-medium"
+        >
+          Reintentar
+        </button>
+      )}
     </div>
   );
 }

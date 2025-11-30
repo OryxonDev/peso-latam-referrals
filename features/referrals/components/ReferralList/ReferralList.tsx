@@ -17,7 +17,7 @@ export function ReferralList() {
   }
 
   if (referrals.isError) {
-    return <ReferralListError error={referrals.error} />;
+    return <ReferralListError error={referrals.error} refetch={referrals.refetch} />;
   }
 
   if (!referrals.data?.list || referrals.data.list.length === 0) {

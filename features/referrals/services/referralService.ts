@@ -1,9 +1,23 @@
-import { apiClient } from '@/lib/api/client';
+import { apiClient, ApiError } from '@/lib/api/client';
 import type { Referral, CreateReferralInput, ReferralsResponse } from '@/features/referrals/types/referral.types';
 import { REFERRALS_BY_PAGE } from '@/features/referrals/consts/referralConsts';
+import { useErrorSimulationStore } from '@/lib/store/errorSimulationStore';
+
+function simulateError() {
+  const { enabled, statusCode } = useErrorSimulationStore.getState();
+  if (enabled) {
+    throw new ApiError(
+      `Simulated API error: ${statusCode || 500}`,
+      statusCode || 500,
+      { simulated: true }
+    );
+  }
+}
 
 export const referralService = {
   async getReferrals(page: number = 1, limit: number = REFERRALS_BY_PAGE): Promise<ReferralsResponse> {
+    simulateError();
+
     const allReferrals = await apiClient<Referral[]>('/referrals?sortBy=id&order=desc');
     const sortedReferrals = allReferrals.sort((a, b) => {
       return Number(b.id) - Number(a.id);
@@ -19,6 +33,8 @@ export const referralService = {
   },
 
   async getAllReferrals(): Promise<ReferralsResponse> {
+    simulateError();
+
     const allReferrals = await apiClient<Referral[]>('/referrals?sortBy=id&order=desc');
     const sortedReferrals = allReferrals.sort((a, b) => {
       return Number(b.id) - Number(a.id);
@@ -31,6 +47,8 @@ export const referralService = {
   },
 
   async getReferralById(id: string): Promise<Referral> {
+    simulateError();
+    
     const referral = await apiClient<Referral>(`/referrals/${id}`);
     
     return referral;

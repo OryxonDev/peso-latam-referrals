@@ -18,7 +18,7 @@ export function TotalEarnedBanner() {
   }
 
   if (allReferrals.isError) {
-    return <TotalEarnedBannerError error={allReferrals.error} />;
+    return <TotalEarnedBannerError error={allReferrals.error} refetch={allReferrals.refetch} />;
   }
 
   return (
