@@ -106,7 +106,7 @@ export function ReferralForm() {
       <button
         type="submit"
         disabled={isPending}
-        className="w-full px-6 py-3 bg-[#B1D090] text-gray-700 rounded-lg font-medium hover:bg-[#082422]/90 hover:text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-full px-6 py-3 bg-[#ffdb3a] text-gray-700 rounded-lg font-medium hover:bg-[#082422]/90 hover:text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {isPending ? 'Invitando...' : 'Invitar'}
       </button>

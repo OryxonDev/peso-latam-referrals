@@ -4,6 +4,7 @@ import { useReferrals } from '@/features/referrals/hooks/useReferrals';
 import { ReferralCard } from '@/features/referrals/components/ReferralList/ReferralCard';
 import { ReferralListLoading } from '@/features/referrals/components/ReferralList/ReferralListLoading';
 import { ReferralListError } from '@/features/referrals/components/ReferralList/ReferralListError';
+import { ReferralListEmpty } from '@/features/referrals/components/ReferralList/ReferralListEmpty';
 import { useReferralStore } from '@/features/referrals/store/referralStore';
 
 export function ReferralList() {
@@ -19,11 +20,7 @@ export function ReferralList() {
   }
 
   if (!referrals.data?.list || referrals.data.list.length === 0) {
-    return (
-      <div className="text-center py-12">
-        <p className="text-gray-600">No hay referidos disponibles</p>
-      </div>
-    );
+    return <ReferralListEmpty />;
   }
 
   const totalPages = Math.ceil(referrals.data.total / 9);
