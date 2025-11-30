@@ -1,5 +1,5 @@
-import { ReferralForm } from '@/features/referrals/components/ReferralForm';
-import { ReferralLinkCard } from '@/features/referrals/components/ReferralLinkCard';
+import { ReferralForm } from '@/features/referrals/components/ReferralInvite/ReferralForm';
+import { ReferralLinkCard } from '@/features/referrals/components/ReferralInvite/ReferralLinkCard';
 import { formatCurrency } from '@/lib/utils/formatCurrency';
 
 export default function AddReferralPage() {

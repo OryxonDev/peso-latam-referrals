@@ -3,8 +3,8 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useCreateReferral } from '../hooks/useCreateReferral';
-import { createReferralSchema, type CreateReferralFormData } from '../schemas/referral.schema';
+import { useCreateReferral } from '../../hooks/useCreateReferral';
+import { createReferralSchema, type CreateReferralFormData } from '../../schemas/referral.schema';
 import { useRouter } from 'next/navigation';
 import { NetworkError, ApiError } from '@/lib/api/client';
 

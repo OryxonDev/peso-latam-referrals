@@ -1,4 +1,4 @@
-import { ReferralProfile } from '@/features/referrals/components/ReferralProfile';
+import { ReferralProfile } from '@/features/referrals/components/ReferralProfile/ReferralProfile';
 import Link from 'next/link';
 
 interface ReferralPageProps {

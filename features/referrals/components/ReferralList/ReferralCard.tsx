@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import type { Referral } from '../types/referral.types';
+import type { Referral } from '../../types/referral.types';
 import { formatCurrency } from '@/lib/utils/formatCurrency';
 
 interface ReferralCardProps {

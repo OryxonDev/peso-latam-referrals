@@ -1,5 +1,5 @@
-import { ReferralList } from '@/features/referrals/components/ReferralList';
-import { TotalEarnedBanner } from '@/features/referrals/components/TotalEarnedBanner';
+import { ReferralList } from '@/features/referrals/components/ReferralList/ReferralList';
+import { TotalEarnedBanner } from '@/features/referrals/components/TotalEarnedBanner/TotalEarnedBanner';
 
 export default function Home() {
   return (

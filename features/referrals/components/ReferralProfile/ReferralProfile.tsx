@@ -2,9 +2,10 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { NetworkError, ApiError } from '@/lib/api/client';
 import { formatCurrency } from '@/lib/utils/formatCurrency';
-import { useReferrals } from '../hooks/useReferrals';
+import { useReferrals } from '../../hooks/useReferrals';
+import { ReferralProfileLoading } from './ReferralProfileLoading';
+import { ReferralProfileError } from './ReferralProfileError';
 
 interface ReferralProfileProps {
   id: string;
@@ -15,50 +16,11 @@ export function ReferralProfile({ id }: ReferralProfileProps) {
   const { data: referral, isLoading, isError, error } = referralById(id);
 
   if (isLoading) {
-    return (
-      <div className="bg-white rounded-lg shadow-md p-8 animate-pulse">
-        <div className="flex flex-col md:flex-row gap-6">
-          <div className="w-32 h-32 rounded-full bg-gray-200 mx-auto md:mx-0"></div>
-          <div className="flex-1 space-y-4">
-            <div className="h-8 bg-gray-200 rounded w-3/4"></div>
-            <div className="h-4 bg-gray-200 rounded w-1/2"></div>
-            <div className="h-4 bg-gray-200 rounded w-2/3"></div>
-            <div className="h-4 bg-gray-200 rounded w-1/3"></div>
-          </div>
-        </div>
-      </div>
-    );
+    return <ReferralProfileLoading />;
   }
 
   if (isError) {
-    const errorType =
-      error instanceof NetworkError
-        ? 'NetworkError'
-        : error instanceof ApiError
-          ? 'ApiError'
-          : 'UnknownError';
-    const errorMessage =
-      error instanceof Error ? error.message : 'An unknown error occurred';
-
-    return (
-      <div className="bg-red-50 border border-red-200 rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-red-800 mb-2">
-          Error al cargar el referido
-        </h3>
-        <p className="text-sm text-red-600 mb-1">
-          <span className="font-medium">Tipo:</span> {errorType}
-        </p>
-        <p className="text-sm text-red-600 mb-4">
-          <span className="font-medium">Mensaje:</span> {errorMessage}
-        </p>
-        <Link
-          href="/"
-          className="text-sm text-red-600 hover:text-red-800 underline"
-        >
-          Volver al listado
-        </Link>
-      </div>
-    );
+    return <ReferralProfileError error={error} />;
   }
 
   if (!referral) {

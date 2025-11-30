@@ -1,7 +1,9 @@
 'use client';
 
-import { useReferrals } from '../hooks/useReferrals';
+import { useReferrals } from '../../hooks/useReferrals';
 import { formatCurrency } from '@/lib/utils/formatCurrency';
+import { TotalEarnedBannerError } from './TotalEarnedBannerError';
+import { TotalEarnedBannerLoading } from './TotalEarnedBannerLoading';
 
 export function TotalEarnedBanner() {
   const { allReferrals } = useReferrals();
@@ -9,15 +11,12 @@ export function TotalEarnedBanner() {
   const totalPending = allReferrals.data?.list?.filter((referral) => !referral.state).length ?? 0;
   const totalEarned = totalConfirmed * 50;
 
+  if (allReferrals.isLoading) {
+    return <TotalEarnedBannerLoading />;
+  }
+
   if (allReferrals.isError) {
-    return (
-      <div className="mb-8 bg-red-50 border border-red-200 rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-red-800 mb-2">Error al cargar los referidos</h3>
-        <p className="text-sm text-red-600">{allReferrals.error?.message}</p>
-        <p className="text-sm text-red-600">{allReferrals.error?.name}</p>
-        <p className="text-sm text-red-600">{allReferrals.error?.stack}</p>
-      </div>
-    );
+    return <TotalEarnedBannerError error={allReferrals.error} />;
   }
 
   return (
