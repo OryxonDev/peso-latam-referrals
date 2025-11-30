@@ -3,23 +3,29 @@ import type { Referral, CreateReferralInput, ReferralsResponse } from '../types/
 
 export const referralService = {
   async getReferrals(page: number = 1, limit: number = 9): Promise<ReferralsResponse> {
-    const allReferrals = await apiClient<Referral[]>('/referrals');
+    const allReferrals = await apiClient<Referral[]>('/referrals?sortBy=id&order=desc');
+    const sortedReferrals = allReferrals.sort((a, b) => {
+      return Number(b.id) - Number(a.id);
+    });
     const startIndex = (page - 1) * limit;
     const endIndex = startIndex + limit;
-    const paginatedReferrals = allReferrals.slice(startIndex, endIndex);
+    const paginatedReferrals = sortedReferrals.slice(startIndex, endIndex);
     
     return {
       list: paginatedReferrals,
-      total: allReferrals.length,
+      total: sortedReferrals.length,
     };
   },
 
   async getAllReferrals(): Promise<ReferralsResponse> {
-    const allReferrals = await apiClient<Referral[]>('/referrals');
+    const allReferrals = await apiClient<Referral[]>('/referrals?sortBy=id&order=desc');
+    const sortedReferrals = allReferrals.sort((a, b) => {
+      return Number(b.id) - Number(a.id);
+    });
 
     return {
-      list: allReferrals,
-      total: allReferrals.length,
+      list: sortedReferrals,
+      total: sortedReferrals.length,
     };
   },
 
