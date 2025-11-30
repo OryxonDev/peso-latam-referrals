@@ -4,18 +4,21 @@ import { useReferrals } from '../hooks/useReferrals';
 import { formatCurrency } from '@/lib/utils/formatCurrency';
 
 export function TotalEarnedBanner() {
-  const { data, isLoading } = useReferrals();
+  const { allReferrals } = useReferrals();
+  const totalConfirmed = allReferrals.data?.list?.filter((referral) => referral.state).length ?? 0;
+  const totalPending = allReferrals.data?.list?.filter((referral) => !referral.state).length ?? 0;
+  const totalEarned = totalConfirmed * 50;
 
-  if (isLoading) {
+  if (allReferrals.isError) {
     return (
-      <div className="mb-8 animate-pulse rounded-lg bg-[#ffdb3a]/20 p-6">
-        <div className="h-8 w-48 bg-[#ffdb3a]/30 rounded"></div>
+      <div className="mb-8 bg-red-50 border border-red-200 rounded-lg p-6">
+        <h3 className="text-lg font-semibold text-red-800 mb-2">Error al cargar los referidos</h3>
+        <p className="text-sm text-red-600">{allReferrals.error?.message}</p>
+        <p className="text-sm text-red-600">{allReferrals.error?.name}</p>
+        <p className="text-sm text-red-600">{allReferrals.error?.stack}</p>
       </div>
     );
   }
-
-  const totalEarned =
-    (data?.data?.filter((referral) => referral.state).length ?? 0) * 50;
 
   return (
     <div className="mb-8 rounded-lg bg-gradient-to-br from-[#ffdb3a]/20 to-[#ffdb3a]/10 p-6 border border-[#ffdb3a]/30">
@@ -24,8 +27,14 @@ export function TotalEarnedBanner() {
           <h3 className="text-lg font-semibold text-[#082422] mb-1">
             Total ganado
           </h3>
-          <p className="text-3xl font-bold text-[#082422]">
+          <p className="mb-4 text-3xl font-bold text-[#082422]">
             {formatCurrency(totalEarned)}
+          </p>
+          <p className="text-sm text-gray-600">
+            Confirmados: <span className="font-semibold text-[#082422]">{totalConfirmed}</span>
+          </p>
+          <p className="text-sm text-gray-600">
+            Pendientes: <span className="font-semibold text-[#082422]">{totalPending}</span>
           </p>
         </div>
         <div className="hidden md:block">

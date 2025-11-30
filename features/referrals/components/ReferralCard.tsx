@@ -7,7 +7,12 @@ interface ReferralCardProps {
 
 export function ReferralCard({ referral }: ReferralCardProps) {
   return (
-    <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6 border border-gray-100">
+    <div className={`bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6 outline outline-1 outline-gray-100 ${
+        referral.state
+          ? 'outline-2 outline-green-300'
+          : 'outline-gray-200'
+        }`}
+      >
       <div className="flex items-start gap-4">
         <div className="relative w-16 h-16 rounded-full overflow-hidden flex-shrink-0">
           <Image
@@ -17,13 +22,14 @@ export function ReferralCard({ referral }: ReferralCardProps) {
             className="object-cover"
           />
         </div>
-        <div className="flex-1 min-w-0">
-          <h3 className="text-lg font-semibold text-[#082422] mb-1 truncate">
+        <div className="flex-1 min-w-0 [&>p]:truncate [&>p]:text-sm [&>p]:text-gray-600">
+          <h3 className="text-lg font-semibold text-[#082422]">
             {referral.name}
           </h3>
-          <p className="text-sm text-gray-600 mb-2">{referral.email}</p>
-          <p className="text-sm text-gray-600 mb-3">{referral.phone}</p>
-          <div className="flex items-center gap-2">
+          <p className="font-bold mb-1">{referral.user}</p>
+          <p className="mb-1">{referral.email}</p>
+          <p className="mb-4">{referral.phone}</p>
+          <div className="flex justify-end">
             <span
               className={`px-3 py-1 rounded-full text-xs font-medium ${
                 referral.state
@@ -31,7 +37,7 @@ export function ReferralCard({ referral }: ReferralCardProps) {
                   : 'bg-gray-100 text-gray-600'
               }`}
             >
-              {referral.state ? 'Activo' : 'Inactivo'}
+              {referral.state ? 'Confirmado + 50$' : 'Pendiente'}
             </span>
           </div>
         </div>

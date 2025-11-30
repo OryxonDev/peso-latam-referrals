@@ -6,10 +6,10 @@ import { useReferralStore } from '../store/referralStore';
 import { NetworkError, ApiError } from '@/lib/api/client';
 
 export function ReferralList() {
-  const { data, isLoading, error } = useReferrals();
+  const { referrals } = useReferrals();
   const { currentPage, setCurrentPage } = useReferralStore();
 
-  if (isLoading) {
+  if (referrals.isLoading) {
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {Array.from({ length: 9 }).map((_, i) => (
@@ -31,15 +31,15 @@ export function ReferralList() {
     );
   }
 
-  if (error) {
+  if (referrals.isError) {
     const errorType =
-      error instanceof NetworkError
+      referrals.error instanceof NetworkError
         ? 'NetworkError'
-        : error instanceof ApiError
+        : referrals.error instanceof ApiError
           ? 'ApiError'
           : 'UnknownError';
     const errorMessage =
-      error instanceof Error ? error.message : 'An unknown error occurred';
+      referrals.error instanceof Error ? referrals.error.message : 'An unknown error occurred';
 
     return (
       <div className="bg-red-50 border border-red-200 rounded-lg p-6">
@@ -56,7 +56,7 @@ export function ReferralList() {
     );
   }
 
-  if (!data || data.data.length === 0) {
+  if (!referrals.data?.list || referrals.data.list.length === 0) {
     return (
       <div className="text-center py-12">
         <p className="text-gray-600">No hay referidos disponibles</p>
@@ -64,14 +64,14 @@ export function ReferralList() {
     );
   }
 
-  const totalPages = Math.ceil(data.total / 9);
+  const totalPages = Math.ceil(referrals.data.total / 9);
   const hasNextPage = currentPage < totalPages;
   const hasPrevPage = currentPage > 1;
 
   return (
     <div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-        {data.data.map((referral) => (
+        {referrals.data.list.map((referral) => (
           <ReferralCard key={referral.id} referral={referral} />
         ))}
       </div>

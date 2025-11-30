@@ -17,7 +17,7 @@ export interface CreateReferralInput {
 }
 
 export interface ReferralsResponse {
-  data: Referral[];
+  list: Referral[];
   total: number;
 }
 
