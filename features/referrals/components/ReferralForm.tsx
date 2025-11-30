@@ -108,7 +108,7 @@ export function ReferralForm() {
         disabled={isPending}
         className="w-full px-6 py-3 bg-[#082422] text-white rounded-lg font-medium hover:bg-[#082422]/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        {isPending ? 'Creando...' : 'Crear Referido'}
+        {isPending ? 'Invitando...' : 'Invitar'}
       </button>
     </form>
   );
