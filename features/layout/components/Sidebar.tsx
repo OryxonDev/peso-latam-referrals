@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useLayoutStore } from '../store/layoutStore';
+import { Logo } from './Logo';
 
 export function Sidebar() {
   const pathname = usePathname();
@@ -27,9 +28,8 @@ export function Sidebar() {
         }`}
       >
         <div className="p-6">
-          <div className="mb-8">
-            <h1 className="text-2xl font-bold">Peso Latam</h1>
-            <p className="text-sm text-white/80">Referidos</p>
+          <div className="mt-4 mb-6 pb-6 border-b border-white/10 pb-4">
+            <Logo className="text-white" />
           </div>
           <nav className="space-y-2">
             {menuItems.map((item) => {
