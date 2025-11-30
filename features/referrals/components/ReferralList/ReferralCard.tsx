@@ -42,7 +42,7 @@ export function ReferralCard({ referral }: ReferralCardProps) {
                   : 'bg-gray-100 text-gray-600'
               }`}
             >
-              {referral.state ? `Confirmado + ${formatCurrency(50)}` : 'Pendiente'}
+              {referral.state ? `Confirmado + ${formatCurrency(50)}` : 'Invitado'}
             </span>
           </div>
         </div>

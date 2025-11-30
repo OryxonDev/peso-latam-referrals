@@ -37,14 +37,14 @@ export function TotalEarnedBanner() {
             <h3 className="text-lg font-semibold text-[#082422] mb-1">
               Total ganado
             </h3>
-            <p className="mb-4 text-3xl font-bold text-[#082422]">
+            <p className="mb-4 text-4xl md:text-5xl font-bold text-[#082422]">
               {formatCurrency(totalEarned)}
             </p>
             <p className="text-sm text-gray-900">
             <span className="font-semibold text-[#082422]">{totalConfirmed}</span> confirmados
             </p>
             <p className="text-sm text-gray-900">
-              <span className="font-semibold text-[#082422]">{totalPending}</span> pendientes
+              <span className="font-semibold text-[#082422]">{totalPending}</span> invitados
             </p>
           </div>
           <div className="text-right space-y-4 w-1/1 md:w-2/3 lg:w-1/3">
