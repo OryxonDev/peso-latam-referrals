@@ -23,6 +23,12 @@ export const referralService = {
     };
   },
 
+  async getReferralById(id: string): Promise<Referral> {
+    const referral = await apiClient<Referral>(`/referrals/${id}`);
+    
+    return referral;
+  },
+
   async createReferral(input: CreateReferralInput): Promise<Referral> {
     const newReferral = await apiClient<Referral>('/referrals', {
       method: 'POST',

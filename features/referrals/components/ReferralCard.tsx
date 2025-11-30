@@ -1,5 +1,9 @@
+'use client';
+
 import Image from 'next/image';
+import Link from 'next/link';
 import type { Referral } from '../types/referral.types';
+import { formatCurrency } from '@/lib/utils/formatCurrency';
 
 interface ReferralCardProps {
   referral: Referral;
@@ -7,12 +11,13 @@ interface ReferralCardProps {
 
 export function ReferralCard({ referral }: ReferralCardProps) {
   return (
-    <div className={`bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6 outline outline-1 outline-gray-100 ${
-        referral.state
-          ? 'outline-2 outline-green-300'
-          : 'outline-gray-200'
-        }`}
-      >
+    <Link href={`/referrals/${referral.id}`}>
+      <div className={`bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6 outline outline-1 outline-gray-100 cursor-pointer ${
+          referral.state
+            ? 'outline-2 outline-green-300'
+            : 'outline-gray-200'
+          }`}
+        >
       <div className="flex items-start gap-4">
         <div className="relative w-16 h-16 rounded-full overflow-hidden flex-shrink-0">
           <Image
@@ -37,12 +42,13 @@ export function ReferralCard({ referral }: ReferralCardProps) {
                   : 'bg-gray-100 text-gray-600'
               }`}
             >
-              {referral.state ? 'Confirmado + 50$' : 'Pendiente'}
+              {referral.state ? `Confirmado + ${formatCurrency(50)}` : 'Pendiente'}
             </span>
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </Link>
   );
 }
 

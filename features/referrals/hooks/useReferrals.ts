@@ -17,9 +17,17 @@ export function useReferrals() {
     retry: 3,
   });
 
+  const referralById = (id: string) => useQuery({
+    queryKey: ['referral-by-id', id],
+    queryFn: () => referralService.getReferralById(id),
+    retry: 3,
+    enabled: !!id,
+  });
+
   return {
     referrals,
     allReferrals,
+    referralById,
   };
 }
 
