@@ -12,10 +12,10 @@ interface ReferralCardProps {
 export function ReferralCard({ referral }: ReferralCardProps) {
   return (
     <Link href={`/referrals/${referral.id}`}>
-      <div className={`bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6 outline outline-1 outline-gray-100 cursor-pointer ${
+      <div className={`bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6 border cursor-pointer ${
           referral.state
-            ? 'outline-2 outline-green-300'
-            : 'outline-gray-200'
+            ? 'border-2 border-[#B1D090]'
+            : 'border-gray-200'
           }`}
         >
       <div className="flex items-start gap-4">
@@ -28,17 +28,17 @@ export function ReferralCard({ referral }: ReferralCardProps) {
           />
         </div>
         <div className="flex-1 min-w-0 [&>p]:truncate [&>p]:text-sm [&>p]:text-gray-600">
-          <h3 className="text-lg font-semibold text-[#082422]">
+          <h3 className="text-lg font-semibold text-[#082422] truncate">
             {referral.name}
           </h3>
-          <p className="font-bold mb-1">{referral.user}</p>
+          <p className="font-bold mb-1">{referral.user}</p>©
           <p className="mb-1">{referral.email}</p>
           <p className="mb-4">{referral.phone}</p>
           <div className="flex justify-end">
             <span
               className={`px-3 py-1 rounded-full text-xs font-medium ${
                 referral.state
-                  ? 'bg-green-100 text-green-800'
+                  ? 'bg-[#B1D090] text-gray-700'
                   : 'bg-gray-100 text-gray-600'
               }`}
             >

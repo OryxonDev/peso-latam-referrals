@@ -60,7 +60,7 @@ export function ReferralProfile({ id }: ReferralProfileProps) {
               <span
                 className={`px-4 py-2 rounded-full text-sm font-medium ${
                   referral.state
-                    ? 'bg-green-100 text-green-800'
+                    ? 'bg-[#B1D090] text-gray-700'
                     : 'bg-gray-100 text-gray-600'
                 }`}
               >
