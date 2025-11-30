@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { MobileMenu } from './MobileMenu';
+import { MobileMenu } from '@/features/layout/components/MobileMenu';
 
 export function Header() {
   return (
@@ -10,7 +10,7 @@ export function Header() {
         <div className="flex items-center gap-4">
           <MobileMenu />
           <div className="px-4 py-1.5 bg-[#ffdb3a] text-[#082422] text-sm font-bold rounded-full shadow-sm border border-[#ffdb3a]/30">
-            Refiere y gana
+            Invita y gana
           </div>
         </div>
         <div className="flex items-center gap-3">

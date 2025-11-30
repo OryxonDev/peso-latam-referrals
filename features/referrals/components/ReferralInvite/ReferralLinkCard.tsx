@@ -1,10 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
 export function ReferralLinkCard() {
   const [copied, setCopied] = useState(false);
-  const referralLink = `${typeof window !== 'undefined' ? window.location.origin : ''}/refer?code=${Math.random().toString(36).substring(2, 9).toUpperCase()}`;
+  const referralLink = useMemo(() => `${typeof window !== 'undefined' && window.location.origin}/refer?code=${Math.random().toString(36).substring(2, 9).toUpperCase()}`, []);
 
   const handleCopy = async () => {
     try {

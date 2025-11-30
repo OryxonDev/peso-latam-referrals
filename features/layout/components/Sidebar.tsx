@@ -2,8 +2,8 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useLayoutStore } from '../store/layoutStore';
-import { Logo } from './Logo';
+import { useLayoutStore } from '@/features/layout/store/layoutStore';
+import { Logo } from '@/features/layout/components/Logo';
 
 export function Sidebar() {
   const pathname = usePathname();

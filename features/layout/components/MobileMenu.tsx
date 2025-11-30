@@ -1,6 +1,6 @@
 'use client';
 
-import { useLayoutStore } from '../store/layoutStore';
+import { useLayoutStore } from '@/features/layout/store/layoutStore';
 
 export function MobileMenu() {
   const { toggleSidebar } = useLayoutStore();

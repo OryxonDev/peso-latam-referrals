@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { referralService } from '../services/referralService';
-import type { CreateReferralInput } from '../types/referral.types';
+import { referralService } from '@/features/referrals/services/referralService';
+import type { CreateReferralInput } from '@/features/referrals/types/referral.types';
 
 export function useCreateReferral() {
   const queryClient = useQueryClient();

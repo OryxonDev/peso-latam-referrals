@@ -3,9 +3,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { formatCurrency } from '@/lib/utils/formatCurrency';
-import { useReferrals } from '../../hooks/useReferrals';
-import { ReferralProfileLoading } from './ReferralProfileLoading';
-import { ReferralProfileError } from './ReferralProfileError';
+import { useReferrals } from '@/features/referrals/hooks/useReferrals';
+import { ReferralProfileLoading } from '@/features/referrals/components/ReferralProfile/ReferralProfileLoading';
+import { ReferralProfileError } from '@/features/referrals/components/ReferralProfile/ReferralProfileError';
 
 interface ReferralProfileProps {
   id: string;

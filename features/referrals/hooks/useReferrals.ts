@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { referralService } from '../services/referralService';
-import { useReferralStore } from '../store/referralStore';
+import { referralService } from '@/features/referrals/services/referralService';
+import { useReferralStore } from '@/features/referrals/store/referralStore';
 
 export function useReferrals() {
   const { currentPage } = useReferralStore();

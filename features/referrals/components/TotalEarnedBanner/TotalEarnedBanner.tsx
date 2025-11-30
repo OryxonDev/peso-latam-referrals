@@ -1,9 +1,9 @@
 'use client';
 
-import { useReferrals } from '../../hooks/useReferrals';
+import { useReferrals } from '@/features/referrals/hooks/useReferrals';
 import { formatCurrency } from '@/lib/utils/formatCurrency';
-import { TotalEarnedBannerError } from './TotalEarnedBannerError';
-import { TotalEarnedBannerLoading } from './TotalEarnedBannerLoading';
+import { TotalEarnedBannerError } from '@/features/referrals/components/TotalEarnedBanner/TotalEarnedBannerError';
+import { TotalEarnedBannerLoading } from '@/features/referrals/components/TotalEarnedBanner/TotalEarnedBannerLoading';
 
 export function TotalEarnedBanner() {
   const { allReferrals } = useReferrals();

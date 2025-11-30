@@ -1,5 +1,5 @@
 import { apiClient } from '@/lib/api/client';
-import type { Referral, CreateReferralInput, ReferralsResponse } from '../types/referral.types';
+import type { Referral, CreateReferralInput, ReferralsResponse } from '@/features/referrals/types/referral.types';
 
 export const referralService = {
   async getReferrals(page: number = 1, limit: number = 9): Promise<ReferralsResponse> {
