@@ -10,8 +10,8 @@ export function Sidebar() {
   const { isSidebarOpen, closeSidebar } = useLayoutStore();
 
   const menuItems = [
-    { href: '/', label: 'Listado de Referidos' },
-    { href: '/add-referral', label: 'Añadir Referido' },
+    { href: '/', label: 'Tus referidos' },
+    { href: '/add-referral', label: 'Invita y gana' },
   ];
 
   return (
