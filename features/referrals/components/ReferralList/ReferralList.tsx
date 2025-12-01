@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useRef, useState } from 'react';
 import { useGetReferrals } from '@/features/referrals/hooks/useGetReferrals';
 import { ReferralCard } from '@/features/referrals/components/ReferralList/ReferralCard';
 import { ReferralListLoading } from '@/features/referrals/components/ReferralList/ReferralListLoading';
@@ -11,6 +12,17 @@ import { REFERRALS_BY_PAGE } from '@/features/referrals/consts/referralConsts';
 export function ReferralList() {
   const { referrals } = useGetReferrals();
   const { currentPage, setCurrentPage } = useReferralStore();
+  const listRef = useRef<HTMLDivElement>(null);
+  const [pageChanged, setPageChanged] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (listRef.current && !referrals.isLoading && referrals.data?.list && pageChanged) {
+      const rect = listRef.current.getBoundingClientRect();
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const elementTop = rect.top + scrollTop - 90;
+      window.scrollTo({ top: elementTop, behavior: 'smooth' });
+    }
+  }, [currentPage, referrals.isLoading, referrals.data?.list, pageChanged]);
 
   if (referrals.isLoading) {
     return <ReferralListLoading />;
@@ -28,8 +40,17 @@ export function ReferralList() {
   const hasNextPage = currentPage < totalPages;
   const hasPrevPage = currentPage > 1;
 
+  const handlePrevPage = () => {
+    setPageChanged(true);
+    setCurrentPage(currentPage - 1);
+  };
+
+  const handleNextPage = () => {
+    setPageChanged(true);
+    setCurrentPage(currentPage + 1);
+  };
   return (
-    <div>
+    <div ref={listRef}>
       <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">
         {referrals.data.list.map((referral) => (
           <ReferralCard key={referral.id} referral={referral} />
@@ -39,7 +60,7 @@ export function ReferralList() {
       {totalPages > 1 && (
         <div className="flex items-center justify-center gap-4">
           <button
-            onClick={() => setCurrentPage(currentPage - 1)}
+            onClick={handlePrevPage}
             disabled={!hasPrevPage}
             className="px-4 py-2 bg-primary text-white rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-primary/90 active:bg-accent active:text-primary transition-colors"
           >
@@ -49,7 +70,7 @@ export function ReferralList() {
             Página {currentPage} de {totalPages}
           </span>
           <button
-            onClick={() => setCurrentPage(currentPage + 1)}
+            onClick={handleNextPage}
             disabled={!hasNextPage}
             className="px-4 py-2 bg-primary text-white rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-primary/90 active:bg-accent active:text-primary transition-colors"
           >
