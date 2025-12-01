@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import { ReferralProfile } from '../ReferralProfile';
-import { useReferrals } from '@/features/referrals/hooks/useReferrals';
+import { useGetReferrals } from '@/features/referrals/hooks/useGetReferrals';
 import type { Referral } from '@/features/referrals/types/referral.types';
 
-jest.mock('@/features/referrals/hooks/useReferrals');
+jest.mock('@/features/referrals/hooks/useGetReferrals');
 jest.mock('next/image', () => ({
   __esModule: true,
   default: (props: any) => {
@@ -20,7 +20,7 @@ jest.mock('next/link', () => ({
   },
 }));
 
-const mockUseReferrals = useReferrals as jest.MockedFunction<typeof useReferrals>;
+const mockUseGetReferrals = useGetReferrals as jest.MockedFunction<typeof useGetReferrals>;
 
 const createMockQueryResult = (overrides: any) => ({
   isLoading: false,
@@ -49,7 +49,7 @@ const mockReferralById = jest.fn();
 
 beforeEach(() => {
   jest.clearAllMocks();
-  mockUseReferrals.mockReturnValue({
+  mockUseGetReferrals.mockReturnValue({
     referrals: createMockQueryResult({}),
     allReferrals: createMockQueryResult({}),
     referralById: mockReferralById,

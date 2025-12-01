@@ -3,7 +3,7 @@ import { referralService } from '@/features/referrals/services/referralService';
 import { useReferralStore } from '@/features/referrals/store/referralStore';
 import { REFERRALS_BY_PAGE } from '@/features/referrals/consts/referralConsts';
 
-export function useReferrals() {
+export function useGetReferrals() {
   const { currentPage } = useReferralStore();
 
   const referrals = useQuery({

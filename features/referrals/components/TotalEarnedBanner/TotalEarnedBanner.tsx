@@ -1,14 +1,14 @@
 'use client';
 
 import Link from 'next/link';
-import { useReferrals } from '@/features/referrals/hooks/useReferrals';
+import { useGetReferrals } from '@/features/referrals/hooks/useGetReferrals';
 import { formatCurrency } from '@/lib/utils/formatCurrency';
 import { TotalEarnedBannerError } from '@/features/referrals/components/TotalEarnedBanner/TotalEarnedBannerError';
 import { TotalEarnedBannerLoading } from '@/features/referrals/components/TotalEarnedBanner/TotalEarnedBannerLoading';
 import { PRICE_PER_REFERRAL } from '@/features/referrals/consts/referralConsts';
 
 export function TotalEarnedBanner() {
-  const { allReferrals } = useReferrals();
+  const { allReferrals } = useGetReferrals();
   const totalConfirmed = allReferrals.data?.list?.filter((referral) => referral.state).length ?? 0;
   const totalPending = allReferrals.data?.list?.filter((referral) => !referral.state).length ?? 0;
   const totalEarned = totalConfirmed * PRICE_PER_REFERRAL;

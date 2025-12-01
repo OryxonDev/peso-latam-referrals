@@ -67,5 +67,13 @@ export const referralService = {
     });
     return newReferral;
   },
+
+  async deleteReferral(id: string): Promise<void> {
+    simulateError();
+    
+    await apiClient<void>(`/referrals/${id}`, {
+      method: 'DELETE',
+    });
+  },
 };
 

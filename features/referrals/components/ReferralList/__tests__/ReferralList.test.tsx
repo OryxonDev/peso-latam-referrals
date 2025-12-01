@@ -1,13 +1,13 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { ReferralList } from '../ReferralList';
-import { useReferrals } from '@/features/referrals/hooks/useReferrals';
+import { useGetReferrals } from '@/features/referrals/hooks/useGetReferrals';
 import { useReferralStore } from '@/features/referrals/store/referralStore';
 import type { Referral } from '@/features/referrals/types/referral.types';
 
-jest.mock('@/features/referrals/hooks/useReferrals');
+jest.mock('@/features/referrals/hooks/useGetReferrals');
 jest.mock('@/features/referrals/store/referralStore');
 
-const mockUseReferrals = useReferrals as jest.MockedFunction<typeof useReferrals>;
+const mockUseGetReferrals = useGetReferrals as jest.MockedFunction<typeof useGetReferrals>;
 const mockUseReferralStore = useReferralStore as jest.MockedFunction<typeof useReferralStore>;
 
 const mockSetCurrentPage = jest.fn();
@@ -69,7 +69,7 @@ beforeEach(() => {
 
 describe('ReferralList', () => {
   it('should render loading state', () => {
-    mockUseReferrals.mockReturnValue({
+    mockUseGetReferrals.mockReturnValue({
       referrals: createMockQueryResult({ isLoading: true }),
       allReferrals: createMockQueryResult({}),
       referralById: jest.fn(),
@@ -85,7 +85,7 @@ describe('ReferralList', () => {
     const mockError = new Error('Test error');
     const mockRefetch = jest.fn();
 
-    mockUseReferrals.mockReturnValue({
+    mockUseGetReferrals.mockReturnValue({
       referrals: createMockQueryResult({ isError: true, error: mockError, refetch: mockRefetch }),
       allReferrals: createMockQueryResult({}),
       referralById: jest.fn(),
@@ -97,7 +97,7 @@ describe('ReferralList', () => {
   });
 
   it('should render empty state when no referrals', () => {
-    mockUseReferrals.mockReturnValue({
+    mockUseGetReferrals.mockReturnValue({
       referrals: createMockQueryResult({ data: { list: [], total: 0 } }),
       allReferrals: createMockQueryResult({}),
       referralById: jest.fn(),
@@ -109,7 +109,7 @@ describe('ReferralList', () => {
   });
 
   it('should render list of referrals', () => {
-    mockUseReferrals.mockReturnValue({
+    mockUseGetReferrals.mockReturnValue({
       referrals: createMockQueryResult({ data: { list: mockReferrals, total: 3 } }),
       allReferrals: createMockQueryResult({}),
       referralById: jest.fn(),
@@ -123,7 +123,7 @@ describe('ReferralList', () => {
   });
 
   it('should not show pagination when total pages is 1', () => {
-    mockUseReferrals.mockReturnValue({
+    mockUseGetReferrals.mockReturnValue({
       referrals: createMockQueryResult({ data: { list: mockReferrals.slice(0, 2), total: 2 } }),
       allReferrals: createMockQueryResult({}),
       referralById: jest.fn(),
@@ -136,7 +136,7 @@ describe('ReferralList', () => {
   });
 
   it('should show pagination when total pages is greater than 1', () => {
-    mockUseReferrals.mockReturnValue({
+    mockUseGetReferrals.mockReturnValue({
       referrals: createMockQueryResult({ data: { list: mockReferrals, total: 25 } }),
       allReferrals: createMockQueryResult({}),
       referralById: jest.fn(),
@@ -155,7 +155,7 @@ describe('ReferralList', () => {
       setCurrentPage: mockSetCurrentPage,
     });
 
-    mockUseReferrals.mockReturnValue({
+    mockUseGetReferrals.mockReturnValue({
       referrals: createMockQueryResult({ data: { list: mockReferrals, total: 25 } }),
       allReferrals: createMockQueryResult({}),
       referralById: jest.fn(),
@@ -174,7 +174,7 @@ describe('ReferralList', () => {
       setCurrentPage: mockSetCurrentPage,
     });
 
-    mockUseReferrals.mockReturnValue({
+    mockUseGetReferrals.mockReturnValue({
       referrals: createMockQueryResult({ data: { list: mockReferrals, total: 25 } }),
       allReferrals: createMockQueryResult({}),
       referralById: jest.fn(),
@@ -193,7 +193,7 @@ describe('ReferralList', () => {
       setCurrentPage: mockSetCurrentPage,
     });
 
-    mockUseReferrals.mockReturnValue({
+    mockUseGetReferrals.mockReturnValue({
       referrals: createMockQueryResult({ data: { list: mockReferrals, total: 25 } }),
       allReferrals: createMockQueryResult({}),
       referralById: jest.fn(),
@@ -213,7 +213,7 @@ describe('ReferralList', () => {
       setCurrentPage: mockSetCurrentPage,
     });
 
-    mockUseReferrals.mockReturnValue({
+    mockUseGetReferrals.mockReturnValue({
       referrals: createMockQueryResult({ data: { list: mockReferrals, total: 25 } }),
       allReferrals: createMockQueryResult({}),
       referralById: jest.fn(),
@@ -233,7 +233,7 @@ describe('ReferralList', () => {
       setCurrentPage: mockSetCurrentPage,
     });
 
-    mockUseReferrals.mockReturnValue({
+    mockUseGetReferrals.mockReturnValue({
       referrals: createMockQueryResult({ data: { list: mockReferrals.slice(0, 2), total: 2 } }),
       allReferrals: createMockQueryResult({}),
       referralById: jest.fn(),
@@ -251,7 +251,7 @@ describe('ReferralList', () => {
       setCurrentPage: mockSetCurrentPage,
     });
 
-    mockUseReferrals.mockReturnValue({
+    mockUseGetReferrals.mockReturnValue({
       referrals: createMockQueryResult({ data: { list: mockReferrals, total: 25 } }),
       allReferrals: createMockQueryResult({}),
       referralById: jest.fn(),

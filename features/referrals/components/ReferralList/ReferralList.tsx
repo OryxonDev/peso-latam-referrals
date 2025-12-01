@@ -1,6 +1,6 @@
 'use client';
 
-import { useReferrals } from '@/features/referrals/hooks/useReferrals';
+import { useGetReferrals } from '@/features/referrals/hooks/useGetReferrals';
 import { ReferralCard } from '@/features/referrals/components/ReferralList/ReferralCard';
 import { ReferralListLoading } from '@/features/referrals/components/ReferralList/ReferralListLoading';
 import { ReferralListError } from '@/features/referrals/components/ReferralList/ReferralListError';
@@ -9,7 +9,7 @@ import { useReferralStore } from '@/features/referrals/store/referralStore';
 import { REFERRALS_BY_PAGE } from '@/features/referrals/consts/referralConsts';
 
 export function ReferralList() {
-  const { referrals } = useReferrals();
+  const { referrals } = useGetReferrals();
   const { currentPage, setCurrentPage } = useReferralStore();
 
   if (referrals.isLoading) {
