@@ -1,4 +1,5 @@
 import { NetworkError, ApiError } from '@/lib/api/client';
+import { getTranslation } from '@/lib/i18n/getTranslation';
 
 interface ErrorInfo {
   errorType: string;
@@ -10,39 +11,39 @@ export function getErrorInfo(error: unknown, context: string): ErrorInfo {
   if (error instanceof ApiError) {
     const statusMessages: Record<number, { errorType: string; whatFailed: string; howToRecover: string }> = {
       400: {
-        errorType: '400 - Bad Request',
-        whatFailed: 'Los datos enviados no son válidos o están mal formateados.',
-        howToRecover: 'Verifica los datos e intenta nuevamente. Si el problema persiste, contacta al soporte.',
+        errorType: getTranslation('errors.api.400.errorType'),
+        whatFailed: getTranslation('errors.api.400.whatFailed'),
+        howToRecover: getTranslation('errors.api.400.howToRecover'),
       },
       401: {
-        errorType: '401 - Unauthorized',
-        whatFailed: 'No tienes permisos para acceder a este recurso.',
-        howToRecover: 'Inicia sesión nuevamente o verifica tus credenciales.',
+        errorType: getTranslation('errors.api.401.errorType'),
+        whatFailed: getTranslation('errors.api.401.whatFailed'),
+        howToRecover: getTranslation('errors.api.401.howToRecover'),
       },
       403: {
-        errorType: '403 - Forbidden',
-        whatFailed: 'No tienes permisos para realizar esta acción.',
-        howToRecover: 'Contacta al administrador si crees que deberías tener acceso.',
+        errorType: getTranslation('errors.api.403.errorType'),
+        whatFailed: getTranslation('errors.api.403.whatFailed'),
+        howToRecover: getTranslation('errors.api.403.howToRecover'),
       },
       404: {
-        errorType: '404 - Not Found',
-        whatFailed: `El ${context} que buscas no existe o fue eliminado.`,
-        howToRecover: 'Verifica que la URL sea correcta o intenta buscar otro recurso.',
+        errorType: getTranslation('errors.api.404.errorType'),
+        whatFailed: getTranslation('errors.api.404.whatFailed', 'es', { context }),
+        howToRecover: getTranslation('errors.api.404.howToRecover'),
       },
       500: {
-        errorType: '500 - Internal Server Error',
-        whatFailed: 'El servidor encontró un error interno y no pudo completar la solicitud.',
-        howToRecover: 'El sistema intentará recuperarse automáticamente. Si el problema persiste, contacta al soporte.',
+        errorType: getTranslation('errors.api.500.errorType'),
+        whatFailed: getTranslation('errors.api.500.whatFailed'),
+        howToRecover: getTranslation('errors.api.500.howToRecover'),
       },
       502: {
-        errorType: '502 - Bad Gateway',
-        whatFailed: 'El servidor no está respondiendo correctamente.',
-        howToRecover: 'El sistema intentará reconectarse automáticamente. Espera unos momentos.',
+        errorType: getTranslation('errors.api.502.errorType'),
+        whatFailed: getTranslation('errors.api.502.whatFailed'),
+        howToRecover: getTranslation('errors.api.502.howToRecover'),
       },
       503: {
-        errorType: '503 - Service Unavailable',
-        whatFailed: 'El servicio está temporalmente fuera de línea por mantenimiento.',
-        howToRecover: 'El sistema intentará reconectarse automáticamente. Vuelve a intentar en unos minutos.',
+        errorType: getTranslation('errors.api.503.errorType'),
+        whatFailed: getTranslation('errors.api.503.whatFailed'),
+        howToRecover: getTranslation('errors.api.503.howToRecover'),
       },
     };
 
@@ -52,24 +53,24 @@ export function getErrorInfo(error: unknown, context: string): ErrorInfo {
     }
 
     return {
-      errorType: `${error.statusCode} - Error`,
-      whatFailed: error.message || 'Ocurrió un error al procesar tu solicitud.',
-      howToRecover: 'El sistema intentará recuperarse automáticamente. Si el problema persiste, contacta al soporte.',
+      errorType: getTranslation('errors.api.default.errorType', 'es', { code: error.statusCode }),
+      whatFailed: error.message || getTranslation('errors.api.default.whatFailed'),
+      howToRecover: getTranslation('errors.api.default.howToRecover'),
     };
   }
 
   if (error instanceof NetworkError) {
     return {
-      errorType: 'Network Error',
-      whatFailed: 'No se pudo conectar con el servidor. Verifica tu conexión a internet.',
-      howToRecover: 'Verifica tu conexión a internet y el sistema intentará reconectarse automáticamente.',
+      errorType: getTranslation('errors.network.errorType'),
+      whatFailed: getTranslation('errors.network.whatFailed'),
+      howToRecover: getTranslation('errors.network.howToRecover'),
     };
   }
 
   return {
-    errorType: 'Unknown Error',
-    whatFailed: error instanceof Error ? error.message : 'Ocurrió un error inesperado.',
-    howToRecover: 'El sistema intentará recuperarse automáticamente. Si el problema persiste, recarga la página.',
+    errorType: getTranslation('errors.unknown.errorType'),
+    whatFailed: error instanceof Error ? error.message : getTranslation('errors.unknown.whatFailed'),
+    howToRecover: getTranslation('errors.unknown.howToRecover'),
   };
 }
 

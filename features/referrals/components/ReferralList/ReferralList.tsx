@@ -8,8 +8,10 @@ import { ReferralListError } from '@/features/referrals/components/ReferralList/
 import { ReferralListEmpty } from '@/features/referrals/components/ReferralList/ReferralListEmpty';
 import { useReferralStore } from '@/features/referrals/store/referralStore';
 import { REFERRALS_BY_PAGE } from '@/features/referrals/consts/referralConsts';
+import { useTranslations } from '@/lib/i18n/useTranslations';
 
 export function ReferralList() {
+  const { t } = useTranslations();
   const { referrals } = useGetReferrals();
   const { currentPage, setCurrentPage } = useReferralStore();
   const listRef = useRef<HTMLDivElement>(null);
@@ -64,17 +66,17 @@ export function ReferralList() {
             disabled={!hasPrevPage}
             className="px-4 py-2 bg-primary text-white rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-primary/90 active:bg-accent active:text-primary transition-colors"
           >
-            Anterior
+            {t('common.previous')}
           </button>
           <span className="text-gray-600">
-            Página {currentPage} de {totalPages}
+            {t('referrals.list.pagination.page', { current: currentPage, total: totalPages })}
           </span>
           <button
             onClick={handleNextPage}
             disabled={!hasNextPage}
             className="px-4 py-2 bg-primary text-white rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-primary/90 active:bg-accent active:text-primary transition-colors"
           >
-            Siguiente
+            {t('common.next')}
           </button>
         </div>
       )}

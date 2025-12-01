@@ -5,12 +5,14 @@ import Link from 'next/link';
 import type { Referral } from '@/features/referrals/types/referral.types';
 import { formatCurrency } from '@/lib/utils/formatCurrency';
 import { PRICE_PER_REFERRAL } from '@/features/referrals/consts/referralConsts';
+import { useTranslations } from '@/lib/i18n/useTranslations';
 
 interface ReferralCardProps {
   referral: Referral;
 }
 
 export function ReferralCard({ referral }: ReferralCardProps) {
+  const { t } = useTranslations();
   return (
     <Link href={`/referrals/${referral.id}`}>
       <div className={`bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6 border cursor-pointer ${
@@ -43,7 +45,7 @@ export function ReferralCard({ referral }: ReferralCardProps) {
                   : 'bg-gray-100 text-gray-600'
               }`}
             >
-              {referral.state ? `Confirmado + ${formatCurrency(PRICE_PER_REFERRAL)}` : 'Invitado'}
+              {referral.state ? t('referrals.card.confirmedWithAmount', { amount: formatCurrency(PRICE_PER_REFERRAL) }) : t('common.invited')}
             </span>
           </div>
         </div>

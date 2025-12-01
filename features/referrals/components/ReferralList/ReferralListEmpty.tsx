@@ -1,8 +1,12 @@
+'use client';
+
 import Link from 'next/link';
 import { formatCurrency } from '@/lib/utils/formatCurrency';
 import { PRICE_PER_REFERRAL } from '@/features/referrals/consts/referralConsts';
+import { useTranslations } from '@/lib/i18n/useTranslations';
 
 export function ReferralListEmpty() {
+  const { t } = useTranslations();
   return (
     <div className="text-center py-16 px-4">
       <div className="max-w-md mx-auto">
@@ -22,16 +26,16 @@ export function ReferralListEmpty() {
           </svg>
         </div>
         <h3 className="text-xl font-semibold text-primary mb-2">
-          No hay referidos disponibles
+          {t('referrals.list.empty.title')}
         </h3>
         <p className="text-gray-600 mb-6">
-          Comienza a invitar personas y gana <span className="font-bold text-primary">{formatCurrency(PRICE_PER_REFERRAL)}</span> por cada referido confirmado
+          {t('referrals.list.empty.message', { amount: formatCurrency(PRICE_PER_REFERRAL) })}
         </p>
         <Link
           href="/add-referral"
           className="inline-block px-6 py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 active:bg-accent active:text-primary transition-colors"
         >
-          Invitar primer referido
+          {t('referrals.list.empty.inviteFirst')}
         </Link>
       </div>
     </div>

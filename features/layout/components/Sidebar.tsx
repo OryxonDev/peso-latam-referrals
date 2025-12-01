@@ -5,14 +5,16 @@ import { usePathname } from 'next/navigation';
 import { useLayoutStore } from '@/features/layout/store/layoutStore';
 import { Logo } from '@/features/layout/components/Logo';
 import { ErrorSimulationPanel } from '@/lib/components/ErrorSimulationPanel';
+import { useTranslations } from '@/lib/i18n/useTranslations';
 
 export function Sidebar() {
+  const { t } = useTranslations();
   const pathname = usePathname();
   const { isSidebarOpen, closeSidebar } = useLayoutStore();
 
   const menuItems = [
-    { href: '/', label: 'Tus referidos' },
-    { href: '/add-referral', label: 'Invita y gana' },
+    { href: '/', label: t('layout.sidebar.yourReferrals') },
+    { href: '/add-referral', label: t('layout.sidebar.inviteAndEarn') },
   ];
 
   return (

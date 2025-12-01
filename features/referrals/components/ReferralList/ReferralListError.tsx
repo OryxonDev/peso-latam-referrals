@@ -2,6 +2,7 @@
 
 import { useErrorSimulationStore } from '@/lib/store/errorSimulationStore';
 import { getErrorInfo } from '@/lib/utils/errorMessages';
+import { useTranslations } from '@/lib/i18n/useTranslations';
 
 interface ReferralListErrorProps {
   error: unknown;
@@ -9,6 +10,7 @@ interface ReferralListErrorProps {
 }
 
 export function ReferralListError({ error, refetch }: ReferralListErrorProps) {
+  const { t } = useTranslations();
   const { reset } = useErrorSimulationStore();
   const errorInfo = getErrorInfo(error, 'recurso');
 
@@ -22,23 +24,23 @@ export function ReferralListError({ error, refetch }: ReferralListErrorProps) {
   return (
     <div className="bg-red-50 border border-red-200 rounded-lg p-6">
       <h3 className="text-lg font-semibold text-red-800 mb-3">
-        Error al cargar los referidos
+        {t('referrals.list.error.title')}
       </h3>
       <p className="text-md text-red-700 mb-2 font-semibold">
         {errorInfo.errorType}
       </p>
       <p className="text-sm text-red-700 mb-2">
-        <span className="font-medium">Qué falló:</span> {errorInfo.whatFailed}
+        <span className="font-medium">{t('referrals.list.error.whatFailed')}</span> {errorInfo.whatFailed}
       </p>
       <p className="text-sm text-red-700 mb-4">
-        <span className="font-medium">Cómo recuperarse:</span> {errorInfo.howToRecover}
+        <span className="font-medium">{t('referrals.list.error.howToRecover')}</span> {errorInfo.howToRecover}
       </p>
       {refetch && (
         <button
           onClick={handleRetry}
           className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/80 active:bg-accent active:text-primary transition-colors font-medium"
         >
-          Reintentar
+          {t('common.retry')}
         </button>
       )}
     </div>

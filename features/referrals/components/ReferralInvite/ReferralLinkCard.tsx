@@ -1,8 +1,10 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import { useTranslations } from '@/lib/i18n/useTranslations';
 
 export function ReferralLinkCard() {
+  const { t } = useTranslations();
   const [copied, setCopied] = useState(false);
   const referralLink = useMemo(() => `${typeof window !== 'undefined' && window.location.origin}/refer?code=${Math.random().toString(36).substring(2, 9).toUpperCase()}`, []);
 
@@ -70,7 +72,7 @@ export function ReferralLinkCard() {
             copied ? 'bg-accent text-primary' : 'bg-primary text-white'
           } hover:bg-accent/90 active:bg-accent hover:text-primary active:text-primary`}
         >
-          {copied ? 'Copiado!' : 'Copiar'}
+          {copied ? t('common.copied') : t('common.copy')}
         </button>
       </div>
       <div className="flex items-center gap-4">
@@ -81,7 +83,7 @@ export function ReferralLinkCard() {
             target="_blank"
             rel="noopener noreferrer"
             className="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center hover:bg-primary/90 active:bg-accent active:text-primary transition-colors"
-            aria-label={`Compartir en ${network.name}`}
+            aria-label={`${t('common.shareOn')} ${network.name}`}
           >
             {network.icon}
           </a>

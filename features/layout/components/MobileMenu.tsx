@@ -1,15 +1,17 @@
 'use client';
 
 import { useLayoutStore } from '@/features/layout/store/layoutStore';
+import { useTranslations } from '@/lib/i18n/useTranslations';
 
 export function MobileMenu() {
+  const { t } = useTranslations();
   const { toggleSidebar } = useLayoutStore();
 
   return (
     <button
       onClick={toggleSidebar}
       className="md:hidden p-2 text-primary hover:bg-gray-100 rounded-lg transition-colors"
-      aria-label="Toggle menu"
+      aria-label={t('layout.header.toggleMenu')}
     >
       <svg
         className="w-6 h-6"

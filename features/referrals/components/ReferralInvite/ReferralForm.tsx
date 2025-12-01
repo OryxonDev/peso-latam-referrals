@@ -7,8 +7,10 @@ import { useCreateReferral } from '@/features/referrals/hooks/useCreateReferral'
 import { createReferralSchema, type CreateReferralFormData } from '@/features/referrals/schemas/referral.schema';
 import { useRouter } from 'next/navigation';
 import { NetworkError, ApiError } from '@/lib/api/client';
+import { useTranslations } from '@/lib/i18n/useTranslations';
 
 export function ReferralForm() {
+  const { t } = useTranslations();
   const router = useRouter();
   const [submitError, setSubmitError] = useState<string | null>(null);
   const { mutate, isPending } = useCreateReferral();
@@ -48,7 +50,7 @@ export function ReferralForm() {
           htmlFor="name"
           className="block text-sm font-medium text-primary mb-2"
         >
-          Nombre
+          {t('referrals.invite.form.nameLabel')}
         </label>
         <input
           id="name"
@@ -66,7 +68,7 @@ export function ReferralForm() {
           htmlFor="email"
           className="block text-sm font-medium text-primary mb-2"
         >
-          Email
+          {t('referrals.invite.form.emailLabel')}
         </label>
         <input
           id="email"
@@ -84,7 +86,7 @@ export function ReferralForm() {
           htmlFor="phone"
           className="block text-sm font-medium text-primary mb-2"
         >
-          Teléfono
+          {t('referrals.invite.form.phoneLabel')}
         </label>
         <input
           id="phone"
@@ -108,7 +110,7 @@ export function ReferralForm() {
         disabled={isPending}
         className="w-full px-6 py-3 bg-accent text-gray-700 rounded-lg font-medium hover:bg-primary/90 hover:text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        {isPending ? 'Invitando...' : 'Invitar'}
+        {isPending ? t('referrals.invite.form.submitting') : t('referrals.invite.form.submit')}
       </button>
     </form>
   );

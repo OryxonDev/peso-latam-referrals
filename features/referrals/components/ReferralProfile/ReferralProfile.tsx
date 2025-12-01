@@ -10,12 +10,14 @@ import { ReferralProfileLoading } from '@/features/referrals/components/Referral
 import { ReferralProfileError } from '@/features/referrals/components/ReferralProfile/ReferralProfileError';
 import { DeleteReferralConfirm } from '@/features/referrals/components/ReferralProfile/DeleteReferralConfirm';
 import { PRICE_PER_REFERRAL } from '@/features/referrals/consts/referralConsts';
+import { useTranslations } from '@/lib/i18n/useTranslations';
 
 interface ReferralProfileProps {
   id: string;
 }
 
 export function ReferralProfile({ id }: ReferralProfileProps) {
+  const { t } = useTranslations();
   const { referralById } = useGetReferrals();
   const { data: referral, isLoading, isError, error, refetch } = referralById(id);
   const { mutate: deleteReferral, isPending: isDeleting } = useDeleteReferral();
@@ -36,12 +38,12 @@ export function ReferralProfile({ id }: ReferralProfileProps) {
   if (!referral) {
     return (
       <div className="bg-white rounded-lg shadow-md p-8 text-center">
-        <p className="text-gray-600 mb-4">Referido no encontrado</p>
+        <p className="text-gray-600 mb-4">{t('referrals.profile.notFound')}</p>
         <Link
           href="/"
           className="text-primary hover:underline"
         >
-          Volver
+          {t('common.back')}
         </Link>
       </div>
     );
@@ -54,7 +56,7 @@ export function ReferralProfile({ id }: ReferralProfileProps) {
           onClick={handleDelete}
           disabled={isDeleting}
           className="absolute top-4 right-4 p-2 text-red-500 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-          aria-label="Eliminar referido"
+          aria-label={t('referrals.profile.deleteAriaLabel')}
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -86,7 +88,7 @@ export function ReferralProfile({ id }: ReferralProfileProps) {
                       : 'bg-gray-100 text-gray-600'
                   }`}
                 >
-                  {referral.state ? `Confirmado + ${formatCurrency(PRICE_PER_REFERRAL)}` : 'Invitado'}
+                  {referral.state ? t('referrals.card.confirmedWithAmount', { amount: formatCurrency(PRICE_PER_REFERRAL) }) : t('common.invited')}
                 </span>
               </div>
             </div>
@@ -94,19 +96,19 @@ export function ReferralProfile({ id }: ReferralProfileProps) {
             <div className="space-y-4 mb-6">
               <div>
                 <h3 className="text-sm font-semibold text-gray-500 mb-1">
-                  Email
+                  {t('common.email')}
                 </h3>
                 <p className="text-primary">{referral.email}</p>
               </div>
               <div>
                 <h3 className="text-sm font-semibold text-gray-500 mb-1">
-                  Teléfono
+                  {t('common.phone')}
                 </h3>
                 <p className="text-primary">{referral.phone}</p>
               </div>
               <div>
                 <h3 className="text-sm font-semibold text-gray-500 mb-1">
-                  Fecha de registro
+                  {t('referrals.profile.registrationDate')}
                 </h3>
                 <p className="text-primary">
                   {new Date(referral.createdAt).toLocaleDateString('es-ES', {
@@ -119,7 +121,7 @@ export function ReferralProfile({ id }: ReferralProfileProps) {
               {referral.description && (
                 <div>
                   <h3 className="text-sm font-semibold text-gray-500 mb-1">
-                    Descripción
+                    {t('common.description')}
                   </h3>
                   <p className="text-primary">{referral.description}</p>
                 </div>
