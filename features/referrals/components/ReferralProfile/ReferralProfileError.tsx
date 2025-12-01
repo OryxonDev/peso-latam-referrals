@@ -36,7 +36,7 @@ export function ReferralProfileError({ error, refetch }: ReferralProfileErrorPro
       {refetch && (
         <button
           onClick={handleRetry}
-          className="px-4 py-2 bg-[#082422] text-white rounded-lg hover:bg-[#082422]/80 active:bg-[#ffdb3a] active:text-[#082422] transition-colors font-medium"
+          className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/80 active:bg-accent active:text-primary transition-colors font-medium"
         >
           Reintentar
         </button>

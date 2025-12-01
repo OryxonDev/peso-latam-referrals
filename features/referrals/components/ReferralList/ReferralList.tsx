@@ -41,7 +41,7 @@ export function ReferralList() {
           <button
             onClick={() => setCurrentPage(currentPage - 1)}
             disabled={!hasPrevPage}
-            className="px-4 py-2 bg-[#082422] text-white rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-[#082422]/90 active:bg-[#ffdb3a] active:text-[#082422] transition-colors"
+            className="px-4 py-2 bg-primary text-white rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-primary/90 active:bg-accent active:text-primary transition-colors"
           >
             Anterior
           </button>
@@ -51,7 +51,7 @@ export function ReferralList() {
           <button
             onClick={() => setCurrentPage(currentPage + 1)}
             disabled={!hasNextPage}
-            className="px-4 py-2 bg-[#082422] text-white rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-[#082422]/90 active:bg-[#ffdb3a] active:text-[#082422] transition-colors"
+            className="px-4 py-2 bg-primary text-white rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-primary/90 active:bg-accent active:text-primary transition-colors"
           >
             Siguiente
           </button>

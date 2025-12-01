@@ -46,7 +46,7 @@ export function ReferralForm() {
       <div>
         <label
           htmlFor="name"
-          className="block text-sm font-medium text-[#082422] mb-2"
+          className="block text-sm font-medium text-primary mb-2"
         >
           Nombre
         </label>
@@ -64,7 +64,7 @@ export function ReferralForm() {
       <div>
         <label
           htmlFor="email"
-          className="block text-sm font-medium text-[#082422] mb-2"
+          className="block text-sm font-medium text-primary mb-2"
         >
           Email
         </label>
@@ -82,7 +82,7 @@ export function ReferralForm() {
       <div>
         <label
           htmlFor="phone"
-          className="block text-sm font-medium text-[#082422] mb-2"
+          className="block text-sm font-medium text-primary mb-2"
         >
           Teléfono
         </label>
@@ -106,7 +106,7 @@ export function ReferralForm() {
       <button
         type="submit"
         disabled={isPending}
-        className="w-full px-6 py-3 bg-[#ffdb3a] text-gray-700 rounded-lg font-medium hover:bg-[#082422]/90 hover:text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-full px-6 py-3 bg-accent text-gray-700 rounded-lg font-medium hover:bg-primary/90 hover:text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {isPending ? 'Invitando...' : 'Invitar'}
       </button>

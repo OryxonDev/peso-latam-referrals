@@ -30,7 +30,7 @@ export function ReferralProfile({ id }: ReferralProfileProps) {
         <p className="text-gray-600 mb-4">Referido no encontrado</p>
         <Link
           href="/"
-          className="text-[#082422] hover:underline"
+          className="text-primary hover:underline"
         >
           Volver
         </Link>
@@ -53,7 +53,7 @@ export function ReferralProfile({ id }: ReferralProfileProps) {
         </div>
         <div className="flex-1">
           <div className="mb-6">
-            <h1 className="text-3xl font-bold text-[#082422] mb-2">
+            <h1 className="text-3xl font-bold text-primary mb-2">
               {referral.name}
             </h1>
             <p className="text-lg text-gray-600 mb-4">@{referral.user}</p>
@@ -61,7 +61,7 @@ export function ReferralProfile({ id }: ReferralProfileProps) {
               <span
                 className={`px-4 py-2 rounded-full text-sm font-medium ${
                   referral.state
-                    ? 'bg-[#B1D090] text-gray-700'
+                    ? 'bg-confirmed text-gray-700'
                     : 'bg-gray-100 text-gray-600'
                 }`}
               >
@@ -75,19 +75,19 @@ export function ReferralProfile({ id }: ReferralProfileProps) {
               <h3 className="text-sm font-semibold text-gray-500 mb-1">
                 Email
               </h3>
-              <p className="text-[#082422]">{referral.email}</p>
+              <p className="text-primary">{referral.email}</p>
             </div>
             <div>
               <h3 className="text-sm font-semibold text-gray-500 mb-1">
                 Teléfono
               </h3>
-              <p className="text-[#082422]">{referral.phone}</p>
+              <p className="text-primary">{referral.phone}</p>
             </div>
             <div>
               <h3 className="text-sm font-semibold text-gray-500 mb-1">
                 Fecha de registro
               </h3>
-              <p className="text-[#082422]">
+              <p className="text-primary">
                 {new Date(referral.createdAt).toLocaleDateString('es-ES', {
                   year: 'numeric',
                   month: 'long',
@@ -100,7 +100,7 @@ export function ReferralProfile({ id }: ReferralProfileProps) {
                 <h3 className="text-sm font-semibold text-gray-500 mb-1">
                   Descripción
                 </h3>
-                <p className="text-[#082422]">{referral.description}</p>
+                <p className="text-primary">{referral.description}</p>
               </div>
             )}
           </div>

@@ -21,15 +21,15 @@ export function ReferralListEmpty() {
             />
           </svg>
         </div>
-        <h3 className="text-xl font-semibold text-[#082422] mb-2">
+        <h3 className="text-xl font-semibold text-primary mb-2">
           No hay referidos disponibles
         </h3>
         <p className="text-gray-600 mb-6">
-          Comienza a invitar personas y gana <span className="font-bold text-[#082422]">{formatCurrency(PRICE_PER_REFERRAL)}</span> por cada referido confirmado
+          Comienza a invitar personas y gana <span className="font-bold text-primary">{formatCurrency(PRICE_PER_REFERRAL)}</span> por cada referido confirmado
         </p>
         <Link
           href="/add-referral"
-          className="inline-block px-6 py-3 bg-[#082422] text-white rounded-lg font-medium hover:bg-[#082422]/90 active:bg-[#ffdb3a] active:text-[#082422] transition-colors"
+          className="inline-block px-6 py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 active:bg-accent active:text-primary transition-colors"
         >
           Invitar primer referido
         </Link>

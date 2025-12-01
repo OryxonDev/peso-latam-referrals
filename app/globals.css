@@ -3,6 +3,7 @@
 :root {
   --primary: #082422;
   --accent: #ffdb3a;
+  --confirmed: #B1D090;
   --background-light: #fefcf9;
   --background-dark: #082422;
   --text-light: #082422;
@@ -12,6 +13,7 @@
 @theme {
   --color-primary: #082422;
   --color-accent: #ffdb3a;
+  --color-confirmed: #B1D090;
   --color-background-light: #fefcf9;
   --color-background-dark: #082422;
   --color-text-light: #082422;

@@ -66,11 +66,9 @@ export function ReferralLinkCard() {
         />
         <button
           onClick={handleCopy}
-          className={`px-4 py-2 bg-[${
-            copied ? '#ffdb3a' : '#082422'
-          }] ${
-            copied ? 'text-[#082422]' : 'text-white'
-          } rounded-lg hover:bg-[#ffdb3a]/90 active:bg-[#ffdb3a] hover:text-[#082422] active:text-[#082422] transition-colors font-medium whitespace-nowrap`}
+          className={`px-4 py-2 rounded-lg transition-colors font-medium whitespace-nowrap ${
+            copied ? 'bg-accent text-primary' : 'bg-primary text-white'
+          } hover:bg-accent/90 active:bg-accent hover:text-primary active:text-primary`}
         >
           {copied ? 'Copiado!' : 'Copiar'}
         </button>
@@ -82,7 +80,7 @@ export function ReferralLinkCard() {
             href={network.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-10 h-10 rounded-full bg-[#082422] text-white flex items-center justify-center hover:bg-[#082422]/90 active:bg-[#ffdb3a] active:text-[#082422] transition-colors"
+            className="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center hover:bg-primary/90 active:bg-accent active:text-primary transition-colors"
             aria-label={`Compartir en ${network.name}`}
           >
             {network.icon}

@@ -9,7 +9,7 @@ export function Header() {
       <div className="flex items-center justify-between md:ml-64 px-4 md:px-6 h-16">
         <div className="flex items-center gap-4">
           <MobileMenu />
-          <div className="px-4 py-1.5 bg-[#ffdb3a] text-[#082422] text-sm font-bold rounded-full shadow-sm border border-[#ffdb3a]/30">
+          <div className="px-4 py-1.5 bg-accent text-primary text-sm font-bold rounded-full shadow-sm border border-accent/30">
             Pide tu tarjeta gratis
           </div>
         </div>

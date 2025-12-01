@@ -15,7 +15,7 @@ export function ReferralCard({ referral }: ReferralCardProps) {
     <Link href={`/referrals/${referral.id}`}>
       <div className={`bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6 border cursor-pointer ${
           referral.state
-            ? 'border-2 border-[#B1D090]'
+            ? 'border-2 border-confirmed'
             : 'border-gray-200'
           }`}
         >
@@ -29,7 +29,7 @@ export function ReferralCard({ referral }: ReferralCardProps) {
           />
         </div>
         <div className="flex-1 min-w-0 [&>p]:truncate [&>p]:text-sm [&>p]:text-gray-600">
-          <h3 className="text-lg font-semibold text-[#082422] truncate">
+          <h3 className="text-lg font-semibold text-primary truncate">
             {referral.name}
           </h3>
           <p className="font-bold mb-1">{referral.user}</p>
@@ -39,7 +39,7 @@ export function ReferralCard({ referral }: ReferralCardProps) {
             <span
               className={`px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap ${
                 referral.state
-                  ? 'bg-[#B1D090] text-gray-700'
+                  ? 'bg-confirmed text-gray-700'
                   : 'bg-gray-100 text-gray-600'
               }`}
             >

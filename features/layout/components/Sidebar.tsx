@@ -24,7 +24,7 @@ export function Sidebar() {
         />
       )}
       <aside
-        className={`fixed left-0 top-0 h-full bg-[#082422] text-white z-50 w-64 transform transition-transform duration-300 ease-in-out md:translate-x-0 flex flex-col ${
+        className={`fixed left-0 top-0 h-full bg-primary text-white z-50 w-64 transform transition-transform duration-300 ease-in-out md:translate-x-0 flex flex-col ${
           isSidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
         }`}
       >
@@ -44,7 +44,7 @@ export function Sidebar() {
                   onClick={closeSidebar}
                   className={`block px-4 py-3 rounded-lg transition-colors ${
                     isActive
-                      ? 'bg-[#ffdb3a] text-[#082422] font-medium'
+                      ? 'bg-accent text-primary font-medium'
                       : 'hover:bg-white/10'
                   }`}
                 >

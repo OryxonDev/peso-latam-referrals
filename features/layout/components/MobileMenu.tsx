@@ -8,7 +8,7 @@ export function MobileMenu() {
   return (
     <button
       onClick={toggleSidebar}
-      className="md:hidden p-2 text-[#082422] hover:bg-gray-100 rounded-lg transition-colors"
+      className="md:hidden p-2 text-primary hover:bg-gray-100 rounded-lg transition-colors"
       aria-label="Toggle menu"
     >
       <svg
