@@ -57,7 +57,7 @@ Según el documento del [Frontend Challenge](https://peso-bo.notion.site/Fronten
   - Listado paginado en la página principal con 12 referidos por página
   - Vista detallada individual en `/referrals/[id]` con toda la información del referido
   - API service con métodos `getReferrals()`, `getAllReferrals()` y `getReferralById()`
-- **Eliminar**: Preparado en la estructura del servicio (no requerido en el challenge)
+- **Eliminar**: Mediante un icono y un modal de confirmación en la vista detallada del referido
 
 **Archivos relevantes**:
 - `features/referrals/services/referralService.ts` - Lógica de negocio
@@ -172,7 +172,7 @@ Según el documento del [Frontend Challenge](https://peso-bo.notion.site/Fronten
 - **Feature-based architecture**: Código organizado por features/dominios
 - **Separación de responsabilidades**: Services, hooks, components, stores bien separados
 - **TypeScript**: Tipado fuerte en toda la aplicación
-- **Custom hooks**: `useReferrals`, `useCreateReferral` para lógica reutilizable
+- **Custom hooks**: `useGetReferrals`, `useCreateReferral` para lógica reutilizable
 - **React Query**: Manejo eficiente de estado del servidor con cache y refetch
 - **Zustand**: Estado global ligero y eficiente
 - **Constantes centralizadas**: Valores configurables en archivos de consts
