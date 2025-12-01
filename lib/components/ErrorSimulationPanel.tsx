@@ -9,28 +9,39 @@ export function ErrorSimulationPanel() {
     useErrorSimulationStore();
   const queryClient = useQueryClient();
 
-  const clearQueries = () => {
-    queryClient.invalidateQueries();
-    queryClient.refetchQueries({ type: 'active' });
-  }
-
   useEffect(() => {
     if (enabled && statusCode) {
       clearQueries();
     }
   }, [enabled, statusCode, queryClient]);
 
+  const clearQueries = () => {
+    queryClient.invalidateQueries();
+    queryClient.refetchQueries({ type: 'active' });
+  }
+
+  const handleToggle = () => {
+    toggle();
+    enabled && clearQueries();
+  };
+
+  const handleSetStatusCode = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const code = e.target.value ? Number(e.target.value) : null;
+    setStatusCode(code);
+    code && clearQueries();
+  };
+
+  const handleReset = () => {
+    reset();
+    clearQueries();
+  };
+
   return (
     <div className="bg-white/10 p-3">
       <div className="flex items-center justify-between">
         <h3 className="text-md font-semibold text-red-400">Error Simulation</h3>
         <button
-          onClick={() => {
-            toggle();
-            if (!enabled) {
-              clearQueries();
-            }
-          }}
+          onClick={handleToggle}
           className={`px-3 py-1 rounded text-xs font-medium ${
             enabled
               ? 'bg-red-500 text-white'
@@ -49,13 +60,7 @@ export function ErrorSimulationPanel() {
             </label>
             <select
               value={statusCode || ''}
-              onChange={(e) => {
-                const code = e.target.value ? Number(e.target.value) : null;
-                setStatusCode(code);
-                if (code) {
-                  clearQueries();
-                }
-              }}
+              onChange={handleSetStatusCode}
               className="w-full px-2 py-1 text-xs border border-white/20 rounded bg-primary text-white"
             >
               <option value="" className="bg-primary">Select code</option>
@@ -70,10 +75,7 @@ export function ErrorSimulationPanel() {
           </div>
 
           <button
-            onClick={() => {
-              reset();
-              clearQueries();
-            }}
+            onClick={handleReset}
             className="w-full px-3 py-1 bg-white/20 text-white rounded text-xs font-medium hover:bg-white/30"
           >
             Reset
