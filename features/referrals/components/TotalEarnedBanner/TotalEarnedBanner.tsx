@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useGetReferrals } from '@/features/referrals/hooks/useGetReferrals';
 import { formatCurrency } from '@/lib/utils/formatCurrency';
@@ -11,9 +12,16 @@ import { useTranslations } from '@/lib/i18n/useTranslations';
 export function TotalEarnedBanner() {
   const { t } = useTranslations();
   const { allReferrals } = useGetReferrals();
+  const videoRef = useRef<HTMLVideoElement>(null);
   const totalConfirmed = allReferrals.data?.list?.filter((referral) => referral.state).length ?? 0;
   const totalPending = allReferrals.data?.list?.filter((referral) => !referral.state).length ?? 0;
   const totalEarned = totalConfirmed * PRICE_PER_REFERRAL;
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.load();
+    }
+  }, []);
 
   if (allReferrals.isLoading) {
     return <TotalEarnedBannerLoading />;
@@ -26,10 +34,12 @@ export function TotalEarnedBanner() {
   return (
     <div className="mb-8 rounded-lg overflow-hidden relative">
       <video
+        ref={videoRef}
         autoPlay
         loop
         muted
         playsInline
+        preload="auto"
         className="absolute inset-0 w-full h-full object-cover"
       >
         <source src="/total-earned-bg-optimized.mp4" type="video/mp4" />
