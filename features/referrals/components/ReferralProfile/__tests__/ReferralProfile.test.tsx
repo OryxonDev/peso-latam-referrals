@@ -83,7 +83,7 @@ describe('ReferralProfile', () => {
     render(<ReferralProfile id="1" />);
     
     expect(screen.getByText('Referido no encontrado')).toBeDefined();
-    expect(screen.getByText('Volver al listado')).toBeDefined();
+    expect(screen.getByText('Volver')).toBeDefined();
   });
 
   it('should render referral information correctly', () => {

@@ -30,7 +30,9 @@ export function Sidebar() {
       >
         <div className="p-6 flex-1">
           <div className="mt-4 mb-6 pb-6 border-b border-white/10 pb-4">
-            <Logo className="text-white" />
+            <Link href="/" onClick={closeSidebar}>
+              <Logo className="text-white" />
+            </Link>
           </div>
           <nav className="space-y-2">
             {menuItems.map((item) => {

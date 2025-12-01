@@ -30,7 +30,7 @@ export function ReferralList() {
 
   return (
     <div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">
         {referrals.data.list.map((referral) => (
           <ReferralCard key={referral.id} referral={referral} />
         ))}
@@ -41,7 +41,7 @@ export function ReferralList() {
           <button
             onClick={() => setCurrentPage(currentPage - 1)}
             disabled={!hasPrevPage}
-            className="px-4 py-2 bg-[#082422] text-white rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-[#082422]/90 transition-colors"
+            className="px-4 py-2 bg-[#082422] text-white rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-[#082422]/90 active:bg-[#ffdb3a] active:text-[#082422] transition-colors"
           >
             Anterior
           </button>
@@ -51,7 +51,7 @@ export function ReferralList() {
           <button
             onClick={() => setCurrentPage(currentPage + 1)}
             disabled={!hasNextPage}
-            className="px-4 py-2 bg-[#082422] text-white rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-[#082422]/90 transition-colors"
+            className="px-4 py-2 bg-[#082422] text-white rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-[#082422]/90 active:bg-[#ffdb3a] active:text-[#082422] transition-colors"
           >
             Siguiente
           </button>

@@ -29,7 +29,7 @@ export function ReferralListEmpty() {
         </p>
         <Link
           href="/add-referral"
-          className="inline-block px-6 py-3 bg-[#082422] text-white rounded-lg font-medium hover:bg-[#082422]/90 transition-colors"
+          className="inline-block px-6 py-3 bg-[#082422] text-white rounded-lg font-medium hover:bg-[#082422]/90 active:bg-[#ffdb3a] active:text-[#082422] transition-colors"
         >
           Invitar primer referido
         </Link>

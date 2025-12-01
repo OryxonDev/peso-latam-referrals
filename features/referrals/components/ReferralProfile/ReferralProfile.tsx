@@ -32,7 +32,7 @@ export function ReferralProfile({ id }: ReferralProfileProps) {
           href="/"
           className="text-[#082422] hover:underline"
         >
-          Volver al listado
+          Volver
         </Link>
       </div>
     );

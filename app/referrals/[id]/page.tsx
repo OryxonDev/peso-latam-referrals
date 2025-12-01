@@ -10,21 +10,21 @@ export default async function ReferralPage({ params }: ReferralPageProps) {
 
   return (
     <div className="max-w-4xl mx-auto">
-      <div className="mb-8 flex items-center justify-between">
+      <div className="mb-8 flex items-center justify-between gap-4">
         <div>
-        <h1 className="text-3xl font-bold text-[#082422] mb-2">
-          Referido
-        </h1>
-        <p className="text-gray-600">
-          Información detallada del referido
-        </p>
+          <h1 className="text-3xl font-bold text-[#082422] mb-2">
+            Referido
+          </h1>
+          <p className="text-gray-600">
+            Información detallada del referido
+          </p>
         </div>
 
         <Link
             href="/"
-            className="inline-block px-6 py-2 bg-[#082422] text-white rounded-lg hover:bg-[#082422]/90 transition-colors"
+            className="inline-block px-6 py-2 bg-[#082422] text-white rounded-lg hover:bg-[#082422]/90 active:bg-[#ffdb3a] active:text-[#082422] transition-colors"
           >
-            Volver al listado
+            Volver
           </Link>
       </div>
       <ReferralProfile id={id} />

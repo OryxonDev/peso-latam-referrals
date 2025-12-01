@@ -33,7 +33,7 @@ export function TotalEarnedBanner() {
         <source src="/total-earned-bg-optimized.mp4" type="video/mp4" />
       </video>
       <div className="relative z-10 bg-gradient-to-br from-[#ffdb3a]/20 to-[#ffdb3a]/10 p-6">
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex flex-col md:flex-row items-center text-center md:text-left justify-between gap-4">
           <div className="w-1/2 md:w-2/3">
             <h3 className="text-lg font-semibold text-[#082422] mb-1">
               Total ganado
@@ -48,11 +48,11 @@ export function TotalEarnedBanner() {
               <span className="font-semibold text-[#082422]">{totalPending}</span> invitados
             </p>
           </div>
-          <div className="text-right space-y-4 w-1/1 md:w-2/3 lg:w-1/3">
+          <div className="text-center md:text-right space-y-4 w-1/1 md:w-2/3 lg:w-1/3">
             <div className="ml-auto">Puedes invitar a más personas para ganar más dinero. Por cada referido confirmado, ganas <span className="font-semibold text-[#082422]">{formatCurrency(PRICE_PER_REFERRAL)}</span>.</div>
             <Link
               href="/add-referral"
-              className="inline-block px-6 py-2 bg-[#082422] text-white rounded-lg font-medium hover:bg-[#082422]/90 transition-colors"
+              className="inline-block px-6 py-2 bg-[#082422] text-white rounded-lg font-medium hover:bg-[#082422]/90 active:bg-[#ffdb3a] active:text-[#082422] transition-colors"
             >
               Invitar
             </Link>
